@@ -1,0 +1,9 @@
+*.nupkg
+*.cache
+*.NuGet.Config
+**/bin/
+**/obj/
+*.exe
+*.pdb
+*.TestResults
+*.dll
