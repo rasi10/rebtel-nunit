@@ -10,7 +10,7 @@ public class Tests
     private UniversitiesHelper uh = new UniversitiesHelper();
     private const string ApiBaseUrl = "http://universities.hipolabs.com";
     private const string ApiBaseUrlSearch = "http://universities.hipolabs.com/search?";
-    private static IEnumerable<TestCaseData> TestDataProviderValidNames(string filePath)
+    private static IEnumerable<TestCaseData> TestDataProvider(string filePath)
     {
         using (StreamReader sr = new StreamReader(filePath))
         {
@@ -34,7 +34,7 @@ public class Tests
         await uh.CheckBaseUrl();
     }
 
-    [Test, TestCaseSource(nameof(TestDataProviderValidNames), new object[] { "../../../test-data/valid-names.txt" })]
+    [Test, TestCaseSource(nameof(TestDataProvider), new object[] { "../../../test-data/valid-names.txt" })]
     public async Task TestValidNameSearch(string input)
     {
         Console.WriteLine($"TestValidNameSearch: Searching for name '{input}'");
@@ -43,7 +43,7 @@ public class Tests
     }
 
 
-    [Test, TestCaseSource(nameof(TestDataProviderValidNames), new object[] { "../../../test-data/invalid-names.txt" })]
+    [Test, TestCaseSource(nameof(TestDataProvider), new object[] { "../../../test-data/invalid-names.txt" })]
     public async Task TestInvalidNameSearch(string input)
     {
         Console.WriteLine($"TestInvalidNameSearch: Searching for name '{input}'");
@@ -51,7 +51,7 @@ public class Tests
         await uh.CheckInvalidEndpoint(endpoint);
     }
 
-    [Test, TestCaseSource(nameof(TestDataProviderValidNames), new object[] { "../../../test-data/valid-countries.txt" })]
+    [Test, TestCaseSource(nameof(TestDataProvider), new object[] { "../../../test-data/valid-countries.txt" })]
     public async Task TestValidCoutrySearch(string input)
     {
         Console.WriteLine($"TestValidCoutrySearch: Searching for name '{input}'");
@@ -59,7 +59,7 @@ public class Tests
         await uh.CheckValidEndpoint(endpoint);
     }
 
-    [Test, TestCaseSource(nameof(TestDataProviderValidNames), new object[] { "../../../test-data/invalid-countries.txt" })]
+    [Test, TestCaseSource(nameof(TestDataProvider), new object[] { "../../../test-data/invalid-countries.txt" })]
     public async Task TestInvalidCoutrySearch(string input)
     {
         Console.WriteLine($"TestInvalidCoutrySearch: Searching for country '{input}'");
